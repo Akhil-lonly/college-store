@@ -1,0 +1,176 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <meta name=description" content="{% block metadescription %} {% endblock %}">
+</head>
+{% block content %}
+    <section class="h-100 bg-dark" >
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="card card-registration my-4">
+              <div class="row g-0">
+                <div class="col-xl-6 d-none d-xl-block">
+                  <img src="{% static 'img/university.jpg' %}"
+                    alt="Sample photo" class="img-fluid"
+                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="card-body p-md-5 text-black">
+                    <h3 class="mb-5 text-uppercase">Student registration form</h3>
+
+    <!--form -->
+                    <form action="{% url 'studentform' %}" method="post">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <input type="text" id="form3Example1m" class="form-control form-control-lg" name="name" />
+                            <label class="form-label" for="form3Example1m">NAME</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <input type="date" id="form3Example1n" class="form-control form-control-lg" name="dob" pattern="" />
+                            <label class="form-label" for="form3Example1n">DOB</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <input type="number" id="form3Example1m1" class="form-control form-control-lg" name="age" />
+                            <label class="form-label" for="form3Example1m1">Age</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-outline mb-4">
+                        <input type="text" id="email" class="form-control form-control-lg" name="email" />
+                        <label class="form-label" for="email">Email ID</label>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example8" class="form-control form-control-lg" name="address" />
+                        <label class="form-label" for="form3Example8">Address</label>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <input type="number" id="age" class="form-control form-control-lg" name="phone" />
+                            <label class="form-label" for="age">Phone Number</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                        <h6 class="mb-0 me-4" name="gender">Gender: </h6>
+                        <div class="form-check form-check-inline mb-0 me-4">
+                          <input class="form-check-input" type="radio" name="gender" id="femaleGender"/>
+                          <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-0 me-4">
+                          <input class="form-check-input" type="radio" name="gender" id="maleGender"/>
+                          <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-0 me-4">
+                          <input class="form-check-input" type="radio" name="gender" id="transGender"/>
+                          <label class="form-check-label" for="TransGender">Transgender</label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <label for="department">DEPARTMENT</label>
+                          <select class="select" id="department" name="department">
+                            {% for s in dept %}
+                              <option value="{{s.id}}">{{s.department}}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <label for="courses">Course</label>
+                          <select class="select"  id="courses" name="course">
+                            <option value="choose">choose</option>
+                          </select>
+                        </div>
+                      </div>
+      <!--                 purpose-->
+                      <div class="row">
+                        <div class="col-md-9">
+                          <label for="purpose">Purpose For </label>
+                          <select class="select" id="purpose" name="purpose">
+                                <option value="enquiry">Enquiry</option>
+                                <option value="order">Order</option>
+                                <option value="return">Return</option>
+                              </select>
+                        </div>
+      <!--                    material provided-->
+                        <h6 class="mb-0 me-4" name="material">Material Provided: </h6>
+                        <div class="form-check form-check-inline mb-0 me-4">
+                            <input class="form-check-input" type="checkbox" name="material" id="book"/>
+                            <label class="form-check-label" for="book">Notes</label>
+                          </div>
+                          <div class="form-check form-check-inline mb-0 me-4">
+                            <input class="form-check-input" type="checkbox" name="material" id="pen"/>
+                            <label class="form-check-label" for="pen">Pen</label>
+                          </div>
+                            <div class="form-check form-check-inline mb-0 me-4">
+                              <input class="form-check-input" type="checkbox" name="material" id="paper"/>
+                              <label class="form-check-label" for="paper">ExamPapers</label>
+                            </div>
+
+                            <div class="d-flex justify-content-end pt-2">
+                              <button type="submit" class="btn btn-warning ">Submit</button> &nbsp;&nbsp;&nbsp;
+                              <a href="{% url 'home' %} "class="btn btn-primary">Return to home</a>
+                            </div>
+                      </div>
+                    </form>
+                           {% for message in messages %}
+                             <p class="fs-2 text-success">{{message}}</p>
+                           {% endfor %}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+    {% block newjs %}
+        <script>
+        $(document).ready(function(){
+            $(document).on("change","#department",function(){
+             let s = $(this).val();
+             console.log(s);
+
+             $.ajax({
+               url:"{% url 'course_selection' %}",
+               data: {"dept":s},
+               dataType:'json',
+               success: function(data){
+                 console.log(data.depart)
+                 $("#courses").html(data.depart);
+               }
+             });
+
+            });
+            });
+        </script>
+{% endblock %}
