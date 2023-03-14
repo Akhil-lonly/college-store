@@ -8,7 +8,7 @@ from .models import Department, Student_Form
 
 
 def home(request):
-    return render(request, "index 1.html")
+    return render(request, "index.html")
 
 
 # Create your views here.
